@@ -11,13 +11,11 @@ public class RacingCarController {
         int tryCount = Integer.parseInt(InputView.inputTryCount());
 
         RacingGame racingGame = RacingGame.of(carNames, tryCount);
+        ResultView.printGuiedText();
         for (int i = 0; i < tryCount; i++) {
             ResultView.printRace(racingGame.getRace(i));
         }
         ResultView.printWinningCars(racingGame);
     }
-
-
-
 
 }

@@ -38,6 +38,14 @@ public class Car {
         return distance.compare(this.distance, comparisonCar.distance);
     }
 
+    public String name() {
+        return name.value();
+    }
+
+    public int distance() {
+        return distance.value();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

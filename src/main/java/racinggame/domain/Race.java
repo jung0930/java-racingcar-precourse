@@ -51,10 +51,14 @@ public class Race {
     }
 
     private Car findFasterDistanceCar(Car fastestCar, Car comparisonCar) {
-        if(fastestCar.compareDistance(comparisonCar) == 1) {
+        if(fastestCar.compareDistance(comparisonCar) < 1) {
             return comparisonCar;
         }
         return fastestCar;
+    }
+
+    public List<Car> cars() {
+        return cars;
     }
 
 }
