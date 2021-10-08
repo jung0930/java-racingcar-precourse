@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import racinggame.domain.exception.TryOutOfRangeException;
+import racinggame.domain.exception.WithOutCarException;
 import racinggame.domain.strategy.MovableStrategy;
 
 import java.util.ArrayList;
@@ -8,10 +10,28 @@ import java.util.Objects;
 
 public class Cars {
 
+    private static final String COMMA = ",";
+    private static final int MIN_VALUE_BY_CAR = 1;
+
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    private Cars(String carNames) {
+        validate(carNames);
+
+        List<Car> cars = new ArrayList<>();
+        String[] names = carNames.split(COMMA);
+        for (String name : names) {
+            cars.add(Car.from(Name.from(name)));
+        }
+        this.cars = cars;
+    }
+
+    public static Cars from(String carNames) {
+        return new Cars(carNames);
     }
 
     public static Cars from(List<Car> cars) {
@@ -51,6 +71,12 @@ public class Cars {
 
     public List<Car> value() {
         return cars;
+    }
+
+    private void validate(String carNames) {
+        if (carNames.split(COMMA).length < MIN_VALUE_BY_CAR) {
+            throw new WithOutCarException();
+        }
     }
 
     @Override

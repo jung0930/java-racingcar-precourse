@@ -6,9 +6,13 @@ import racinggame.domain.RacingGame;
 
 import java.util.List;
 
-public class ResultView {
+public class OutputView {
 
-    private ResultView() {
+    private OutputView() {
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 
     public static void printExecutionResultText() {
