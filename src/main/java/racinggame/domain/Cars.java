@@ -58,18 +58,18 @@ public class Cars {
         return new Cars(winners);
     }
 
-    private void addWinningCar(List<Car> winners, Car fastestCar, Car comparisonCar) {
-        if (fastestCar.compareDistance(comparisonCar) == 0) {
-            winners.add(comparisonCar);
-        }
-    }
-
     private Car findFastestCar() {
         Car fastestCar = cars.get(0);
         for (Car car : cars) {
             fastestCar = car.findFasterCar(fastestCar);
         }
         return fastestCar;
+    }
+
+    private void addWinningCar(List<Car> winners, Car fastestCar, Car comparisonCar) {
+        if (fastestCar.compareDistance(comparisonCar) == 0) {
+            winners.add(comparisonCar);
+        }
     }
 
     public List<Car> value() {
