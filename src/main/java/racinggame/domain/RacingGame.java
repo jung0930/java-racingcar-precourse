@@ -15,14 +15,14 @@ public class RacingGame {
 
     private RacingGame(Cars cars, int tryCount, MovableStrategy strategy) {
         validate(tryCount);
-        this.rounds = startRace(cars, tryCount, strategy);
+        this.rounds = startRounds(cars, tryCount, strategy);
     }
 
     public static RacingGame of(Cars cars, int tryCount, MovableStrategy strategy) {
         return new RacingGame(cars, tryCount, strategy);
     }
 
-    private List<Round> startRace(Cars cars, int tryCount, MovableStrategy strategy) {
+    private List<Round> startRounds(Cars cars, int tryCount, MovableStrategy strategy) {
         List<Round> rounds = new ArrayList<>();
         Round round = Round.of(cars, strategy);
         while (tryCount > 0) {

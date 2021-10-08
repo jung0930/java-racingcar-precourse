@@ -21,13 +21,7 @@ public class Cars {
 
     private Cars(String carNames) {
         validate(carNames);
-
-        List<Car> cars = new ArrayList<>();
-        String[] names = carNames.split(COMMA);
-        for (String name : names) {
-            cars.add(Car.from(Name.from(name)));
-        }
-        this.cars = cars;
+        this.cars = addCars(carNames);
     }
 
     public static Cars from(String carNames) {
@@ -36,6 +30,15 @@ public class Cars {
 
     public static Cars from(List<Car> cars) {
         return new Cars(cars);
+    }
+
+    private List<Car> addCars(String carNames) {
+        List<Car> cars = new ArrayList<>();
+        String[] names = carNames.split(COMMA);
+        for (String name : names) {
+            cars.add(Car.from(Name.from(name)));
+        }
+        return cars;
     }
 
     public Cars move(MovableStrategy strategy) {

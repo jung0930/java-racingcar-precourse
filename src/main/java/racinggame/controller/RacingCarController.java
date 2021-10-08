@@ -10,19 +10,23 @@ public class RacingCarController {
 
     public void play() {
         try {
-            Cars cars = Cars.from(InputView.inputCarNames());
-            int tryCount = Integer.parseInt(InputView.inputTryCount());
-
-            RacingGame racingGame = RacingGame.of(cars, tryCount, new RacingMovableStrategy());
-            OutputView.printExecutionResultText();
-            for (int i = 0; i < tryCount; i++) {
-                OutputView.printRace(racingGame.getRace(i));
-            }
-            OutputView.printWinningCars(racingGame);
+            start();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            play();
+            start();
         }
+    }
+
+    public void start() {
+        Cars cars = Cars.from(InputView.inputCarNames());
+        int tryCount = Integer.parseInt(InputView.inputTryCount());
+
+        RacingGame racingGame = RacingGame.of(cars, tryCount, new RacingMovableStrategy());
+        OutputView.printExecutionResultText();
+        for (int i = 0; i < tryCount; i++) {
+            OutputView.printRace(racingGame.getRace(i));
+        }
+        OutputView.printWinningCars(racingGame);
     }
 
 }
