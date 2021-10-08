@@ -1,7 +1,7 @@
 package racinggame.view;
 
 import racinggame.domain.Car;
-import racinggame.domain.Race;
+import racinggame.domain.Round;
 import racinggame.domain.RacingGame;
 
 import java.util.List;
@@ -16,8 +16,8 @@ public class ResultView {
         System.out.println("실행결과");
     }
 
-    public static void printRace(Race race) {
-        List<Car> cars = race.cars().value();
+    public static void printRace(Round round) {
+        List<Car> cars = round.cars().value();
         for (Car car : cars) {
             System.out.println(car.name() + " : " + printDistance(car.distance()));
         }

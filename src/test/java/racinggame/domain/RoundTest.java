@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class RaceTest {
+class RoundTest {
 
     private Cars cars;
     private MovableStrategy strategy = new ForwardMovableStrategy();
@@ -23,22 +23,22 @@ class RaceTest {
     @DisplayName("생성")
     @Test
     void create() {
-        assertThat(Race.of(cars, strategy)).isInstanceOf(Race.class);
+        assertThat(Round.of(cars, strategy)).isInstanceOf(Round.class);
     }
 
     @DisplayName("Race를 시작한다.")
     @Test
     void start() {
         Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1)), Car.of(Name.from("b"), Distance.from(4)), Car.of(Name.from("c"), Distance.from(4))));
-        Race startedRace = Race.of(movedCars, strategy);
+        Round startedRound = Round.of(movedCars, strategy);
 
-        assertThat(Race.of(cars, strategy).start()).isEqualTo(startedRace);
+        assertThat(Round.of(cars, strategy).start()).isEqualTo(startedRound);
     }
 
     @DisplayName("가장 빠른 Cars를 찾는다.")
     @Test
     void findFastestCars() {
-        assertThat(Race.of(cars, strategy).findFastestCars())
+        assertThat(Round.of(cars, strategy).findFastestCars())
                 .isEqualTo(Cars.from(Arrays.asList(Car.of(Name.from("b"), Distance.from(3)), Car.of(Name.from("c"), Distance.from(3)))));
     }
 

@@ -13,11 +13,11 @@ public class RacingGame {
     private static final String COMMA = ",";
     private static final int MIN_VALUE_BY_CAR = 1;
 
-    private final List<Race> races;
+    private final List<Round> rounds;
 
     private RacingGame(String carNames, int tryCount, MovableStrategy strategy) {
         validate(carNames, tryCount);
-        this.races = startRace(lineUp(carNames), tryCount, strategy);
+        this.rounds = startRace(lineUp(carNames), tryCount, strategy);
     }
 
     public static RacingGame of(String carNames, int tryCount, MovableStrategy strategy) {
@@ -33,23 +33,23 @@ public class RacingGame {
         return cars;
     }
 
-    private List<Race> startRace(List<Car> cars, int tryCount, MovableStrategy strategy) {
-        List<Race> races = new ArrayList<>();
-        Race race = Race.of(Cars.from(cars), strategy);
+    private List<Round> startRace(List<Car> cars, int tryCount, MovableStrategy strategy) {
+        List<Round> rounds = new ArrayList<>();
+        Round round = Round.of(Cars.from(cars), strategy);
         while (tryCount > 0) {
-            race = race.start();
-            races.add(race);
+            round = round.start();
+            rounds.add(round);
             tryCount--;
         }
-        return races;
+        return rounds;
     }
 
     public Cars findWinningCars() {
-        return races.get(races.size() - 1).findFastestCars();
+        return rounds.get(rounds.size() - 1).findFastestCars();
     }
 
-    public Race getRace(int index) {
-        return races.get(index);
+    public Round getRace(int index) {
+        return rounds.get(index);
     }
 
     private void validate(String nameList, int roundCount) {
@@ -66,12 +66,12 @@ public class RacingGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RacingGame that = (RacingGame) o;
-        return Objects.equals(races, that.races);
+        return Objects.equals(rounds, that.rounds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(races);
+        return Objects.hash(rounds);
     }
 
 }
