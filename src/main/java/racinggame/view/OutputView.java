@@ -1,8 +1,8 @@
 package racinggame.view;
 
 import racinggame.domain.Car;
-import racinggame.domain.Round;
 import racinggame.domain.RacingGame;
+import racinggame.domain.Round;
 
 import java.util.List;
 

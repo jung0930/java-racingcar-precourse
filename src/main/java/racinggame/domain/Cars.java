@@ -1,6 +1,5 @@
 package racinggame.domain;
 
-import racinggame.domain.exception.TryOutOfRangeException;
 import racinggame.domain.exception.WithOutCarException;
 import racinggame.domain.strategy.MovableStrategy;
 
