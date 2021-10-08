@@ -2,7 +2,7 @@ package racinggame.domain.strategy;
 
 import nextstep.utils.Randoms;
 
-public class RacingMovableStrategy implements MovableStrategy{
+public class RacingMovableStrategy implements MovableStrategy {
 
     private static final int MIN_NUMBER = 0;
     private static final int MAX_NUMBER = 9;

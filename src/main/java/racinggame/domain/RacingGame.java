@@ -3,10 +3,10 @@ package racinggame.domain;
 import racinggame.domain.exception.TryOutOfRangeException;
 import racinggame.domain.exception.WithOutCarException;
 import racinggame.domain.strategy.MovableStrategy;
-import racinggame.domain.strategy.RacingMovableStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RacingGame {
 
@@ -15,29 +15,27 @@ public class RacingGame {
 
     private final List<Race> races;
 
-    private MovableStrategy moveStrategy = new RacingMovableStrategy();
-
-    private RacingGame(String carNames, int tryCount) {
+    private RacingGame(String carNames, int tryCount, MovableStrategy strategy) {
         validate(carNames, tryCount);
-        races = startRace(lineUp(carNames), tryCount);
+        this.races = startRace(lineUp(carNames), tryCount, strategy);
     }
 
-    public static RacingGame of(String carNames, int tryCount) {
-        return new RacingGame(carNames, tryCount);
+    public static RacingGame of(String carNames, int tryCount, MovableStrategy strategy) {
+        return new RacingGame(carNames, tryCount, strategy);
     }
 
     private List<Car> lineUp(String carNames) {
         List<Car> cars = new ArrayList<>();
         String[] names = carNames.split(COMMA);
-        for(String name : names) {
+        for (String name : names) {
             cars.add(Car.from(Name.from(name)));
         }
         return cars;
     }
 
-    private List<Race> startRace(List<Car> cars, int tryCount) {
+    private List<Race> startRace(List<Car> cars, int tryCount, MovableStrategy strategy) {
         List<Race> races = new ArrayList<>();
-        Race race = Race.of(cars, moveStrategy);
+        Race race = Race.of(Cars.from(cars), strategy);
         while (tryCount > 0) {
             race = race.start();
             races.add(race);
@@ -46,7 +44,7 @@ public class RacingGame {
         return races;
     }
 
-    public List<Car> findWinningCars () {
+    public Cars findWinningCars() {
         return races.get(races.size() - 1).findFastestCars();
     }
 
@@ -61,6 +59,19 @@ public class RacingGame {
         if (roundCount < MIN_VALUE_BY_CAR) {
             throw new TryOutOfRangeException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RacingGame that = (RacingGame) o;
+        return Objects.equals(races, that.races);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(races);
     }
 
 }

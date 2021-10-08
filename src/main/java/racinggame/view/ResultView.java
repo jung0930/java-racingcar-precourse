@@ -8,16 +8,17 @@ import java.util.List;
 
 public class ResultView {
 
-    private ResultView() {}
+    private ResultView() {
+    }
 
-    public static void printGuiedText() {
+    public static void printExecutionResultText() {
         System.out.println();
         System.out.println("실행결과");
     }
 
     public static void printRace(Race race) {
-        List<Car> cars = race.cars();
-        for(Car car : cars) {
+        List<Car> cars = race.cars().value();
+        for (Car car : cars) {
             System.out.println(car.name() + " : " + printDistance(car.distance()));
         }
         System.out.println();
@@ -33,7 +34,7 @@ public class ResultView {
 
     public static void printWinningCars(RacingGame racingGame) {
         StringBuilder winners = new StringBuilder();
-        List<Car> cars = racingGame.findWinningCars();
+        List<Car> cars = racingGame.findWinningCars().value();
         for (int i = 0; i < cars.size() - 1; i++) {
             winners.append(cars.get(i).name()).append(",");
         }

@@ -2,63 +2,45 @@ package racinggame.domain;
 
 import racinggame.domain.strategy.MovableStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class Race {
 
-    private final List<Car> cars;
+    private final Cars cars;
     private final MovableStrategy strategy;
 
-    private Race(List<Car> cars, MovableStrategy strategy) {
+    private Race(Cars cars, MovableStrategy strategy) {
         this.cars = cars;
         this.strategy = strategy;
     }
 
-    public static Race of(List<Car> cars, MovableStrategy strategy) {
+    public static Race of(Cars cars, MovableStrategy strategy) {
         return new Race(cars, strategy);
     }
 
     public Race start() {
-        List<Car> movedCars = new ArrayList<>();
-        for (Car car : cars) {
-            movedCars.add(car.move(strategy));
-        }
-        return new Race(movedCars, strategy);
+        return new Race(cars.move(strategy), strategy);
     }
 
-    public List<Car> findFastestCars() {
-        List<Car> winners = new ArrayList<>();
-        Car fastestCar = findFastestCarDistance();
-        for(Car car : cars) {
-            addWinningCar(winners, fastestCar, car);
-        }
-        return winners;
+    public Cars findFastestCars() {
+        return cars.findFastestCars();
     }
 
-    private void addWinningCar(List<Car> winners, Car fastestCar, Car comparisonCar) {
-        if(fastestCar.compareDistance(comparisonCar) == 0) {
-            winners.add(comparisonCar);
-        }
-    }
-
-    private Car findFastestCarDistance() {
-        Car fastestCar = cars.get(0);
-        for(Car car : cars) {
-            fastestCar = findFasterDistanceCar(fastestCar, car);
-        }
-        return fastestCar;
-    }
-
-    private Car findFasterDistanceCar(Car fastestCar, Car comparisonCar) {
-        if(fastestCar.compareDistance(comparisonCar) < 1) {
-            return comparisonCar;
-        }
-        return fastestCar;
-    }
-
-    public List<Car> cars() {
+    public Cars cars() {
         return cars;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Race race = (Race) o;
+        return Objects.equals(cars, race.cars) &&
+                Objects.equals(strategy, race.strategy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cars, strategy);
+    }
 }

@@ -28,8 +28,15 @@ public class Car {
     }
 
     public Car move(MovableStrategy strategy) {
-        if(strategy.isMoveable()) {
+        if (strategy.isMoveable()) {
             return new Car(name, distance.add());
+        }
+        return this;
+    }
+
+    public Car findFasterCar(Car comparisonCar) {
+        if (compareDistance(comparisonCar) < 1) {
+            return comparisonCar;
         }
         return this;
     }
