@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Name {
 
+    private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
     private final String name;
@@ -29,7 +30,7 @@ public class Name {
         if (StringUtil.isEmptyOrNull(name)) {
             throw new NameEmptyOrNullException();
         }
-        if (name.length() > MAX_LENGTH) {
+        if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
             throw new NameLengthOutOfRangeException();
         }
     }
