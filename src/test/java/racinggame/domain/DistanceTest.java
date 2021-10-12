@@ -16,7 +16,7 @@ class DistanceTest {
     @DisplayName("거리를 증가시킨다.")
     @Test
     void add() {
-        Distance distance = Distance.from(5).add();
+        Distance distance = Distance.from(5).increase();
         assertThat(distance).isEqualTo(Distance.from(6));
     }
 

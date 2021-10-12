@@ -29,7 +29,7 @@ public class Car {
 
     public Car move(MovableStrategy strategy) {
         if (strategy.isMoveable()) {
-            return new Car(name, distance.add());
+            return new Car(name, distance.increase());
         }
         return this;
     }

@@ -22,7 +22,7 @@ public class Distance implements Comparator<Distance> {
         return new Distance(distance);
     }
 
-    public Distance add() {
+    public Distance increase() {
         return new Distance(distance + ADD);
     }
 
