@@ -1,10 +1,10 @@
 package racinggame.domain;
 
-import racinggame.domain.exception.TryOutOfRangeException;
+import racinggame.domain.exception.TryCountOutOfRangeException;
 
 public class TryCount {
 
-    private static final int MIN_VALUE_BY_CAR = 1;
+    private static final int MIN_VALUE_BY_TRY_COUNT = 1;
 
     private final int tryCount;
 
@@ -26,8 +26,8 @@ public class TryCount {
     }
 
     private void validate(int tryCount) {
-        if (tryCount < MIN_VALUE_BY_CAR) {
-            throw new TryOutOfRangeException();
+        if (tryCount < MIN_VALUE_BY_TRY_COUNT) {
+            throw new TryCountOutOfRangeException();
         }
     }
 
