@@ -12,13 +12,11 @@ public final class OutputView {
     }
 
     public static void printErrorMessage(final String message) {
-        System.out.println(message);
-        System.out.println();
+        System.out.println(message + "\n");
     }
 
     public static void printExecutionResultText() {
-        System.out.println();
-        System.out.println("실행결과");
+        System.out.println("\n실행결과");
     }
 
     public static void printRaces(final RacingGame racingGame) {
@@ -30,7 +28,7 @@ public final class OutputView {
     private static void printRace(final Round round) {
         List<Car> cars = round.cars().value();
         for (Car car : cars) {
-            System.out.println(car.name() + " : " + printDistance(car.distance()));
+            System.out.printf("%s : %s\n", car.name(), printDistance(car.distance()));
         }
         System.out.println();
     }
@@ -50,7 +48,7 @@ public final class OutputView {
             winners.append(cars.get(i).name()).append(",");
         }
         winners.append(cars.get(cars.size() - 1).name());
-        System.out.println("최종 우승자는 " + winners.toString() + " 입니다.");
+        System.out.printf("최종 우승자는 %s 입니다.", winners.toString());
     }
 
 }

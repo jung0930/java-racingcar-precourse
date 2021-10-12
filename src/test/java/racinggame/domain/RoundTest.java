@@ -17,7 +17,7 @@ class RoundTest {
 
     @BeforeEach
     void setup() {
-        cars = Cars.from(Arrays.asList(Car.from(Name.from("a")), Car.of(Name.from("b"), Distance.from(3)), Car.of(Name.from("c"), Distance.from(3))));
+        cars = Cars.from(Arrays.asList(Car.from(Name.from("a"))));
     }
 
     @DisplayName("생성")
@@ -26,20 +26,19 @@ class RoundTest {
         assertThat(Round.of(cars, strategy)).isInstanceOf(Round.class);
     }
 
-    @DisplayName("Race를 시작한다.")
+    @DisplayName("Race를 시작한다. cars가 이동했는지 확인한다.")
     @Test
     void start() {
-        Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1)), Car.of(Name.from("b"), Distance.from(4)), Car.of(Name.from("c"), Distance.from(4))));
-        Round startedRound = Round.of(movedCars, strategy);
+        Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1))));
 
-        assertThat(Round.of(cars, strategy).start()).isEqualTo(startedRound);
+        assertThat(Round.of(cars, strategy).start().cars()).isEqualTo(movedCars);
     }
 
     @DisplayName("가장 빠른 Cars를 찾는다.")
     @Test
     void findFastestCars() {
         assertThat(Round.of(cars, strategy).findFastestCars())
-                .isEqualTo(Cars.from(Arrays.asList(Car.of(Name.from("b"), Distance.from(3)), Car.of(Name.from("c"), Distance.from(3)))));
+                .isEqualTo(Cars.from(Arrays.asList(Car.from(Name.from("a")))));
     }
 
 }

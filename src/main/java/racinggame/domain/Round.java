@@ -30,18 +30,4 @@ public final class Round {
         return cars;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Round round = (Round) o;
-        return Objects.equals(cars, round.cars) &&
-                Objects.equals(strategy, round.strategy);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cars, strategy);
-    }
-
 }
