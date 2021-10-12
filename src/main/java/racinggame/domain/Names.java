@@ -8,7 +8,7 @@ import java.util.*;
 public class Names {
 
     private static final String COMMA = ",";
-    private static final int MIN_SIZE = 1;
+    private static final int MIN_SIZE = 2;
 
     private final List<Name> names;
 
