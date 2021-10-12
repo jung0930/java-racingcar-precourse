@@ -2,8 +2,6 @@ package racinggame.domain;
 
 import racinggame.domain.strategy.MovableStrategy;
 
-import java.util.Objects;
-
 public final class Round {
 
     private final Cars cars;

@@ -5,29 +5,33 @@ import racinggame.domain.exception.NamesNotDualException;
 
 import java.util.*;
 
-public class Names {
+public final class Names {
 
     private static final String COMMA = ",";
     private static final int MIN_SIZE = 2;
 
     private final List<Name> names;
 
-    private Names(String carNames){
+    private Names(final String carNames) {
         validate(carNames);
         this.names = convertCarNames(carNames);
     }
 
-    public static Names from(String carNames) {
+    public static Names from(final String carNames) {
         return new Names(carNames);
     }
 
-    private void validate(String carNames) {
-        List<String> names = Arrays.asList(carNames.split(COMMA));
-        Set<String> namesSet = new HashSet<>(names);
-        if(names.size() < MIN_SIZE) {
+    private void validate(final String carNames) {
+        if (names.size() < MIN_SIZE) {
             throw new NamesNotDualException();
         }
-        if(names.size() != namesSet.size()) {
+        validateDuplicate(carNames);
+    }
+
+    private void validateDuplicate(final String carNames) {
+        List<String> names = Arrays.asList(carNames.split(COMMA));
+        Set<String> namesSet = new HashSet<>(names);
+        if (names.size() != namesSet.size()) {
             throw new NamesDuplicateException();
         }
     }
