@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class RacingGame {
 
-    private final List<Round> rounds;
     private final Cars cars;
     private final TryCount tryCount;
     private final MovableStrategy strategy;
+    private final List<Round> rounds;
 
     private RacingGame(Cars cars, TryCount tryCount, MovableStrategy strategy) {
         this.cars = cars;
