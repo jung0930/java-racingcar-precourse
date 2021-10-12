@@ -10,16 +10,12 @@ public class Distance implements Comparator<Distance> {
 
     private final int distance;
 
-    private Distance() {
-        this.distance = INIT;
-    }
-
     private Distance(int distance) {
         this.distance = distance;
     }
 
     public static Distance init() {
-        return new Distance();
+        return new Distance(INIT);
     }
 
     public static Distance from(int distance) {
