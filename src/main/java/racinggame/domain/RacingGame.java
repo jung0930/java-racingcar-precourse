@@ -9,26 +9,28 @@ import java.util.Objects;
 
 public class RacingGame {
 
-    private static final int MIN_VALUE_BY_CAR = 1;
-
     private final List<Round> rounds;
+    private final Cars cars;
+    private final TryCount tryCount;
+    private final MovableStrategy strategy;
 
-    private RacingGame(Cars cars, int tryCount, MovableStrategy strategy) {
-        validate(tryCount);
-        this.rounds = startRounds(cars, tryCount, strategy);
+    private RacingGame(Cars cars, TryCount tryCount, MovableStrategy strategy) {
+        this.cars = cars;
+        this.tryCount = tryCount;
+        this.strategy = strategy;
+        this.rounds = startRounds();
     }
 
-    public static RacingGame of(Cars cars, int tryCount, MovableStrategy strategy) {
+    public static RacingGame of(Cars cars, TryCount tryCount, MovableStrategy strategy) {
         return new RacingGame(cars, tryCount, strategy);
     }
 
-    private List<Round> startRounds(Cars cars, int tryCount, MovableStrategy strategy) {
+    private List<Round> startRounds() {
         List<Round> rounds = new ArrayList<>();
         Round round = Round.of(cars, strategy);
-        while (tryCount > 0) {
+        for(int i = 0; !tryCount.isSame(i); i++) {
             round = round.start();
             rounds.add(round);
-            tryCount--;
         }
         return rounds;
     }
@@ -41,10 +43,8 @@ public class RacingGame {
         return rounds.get(index);
     }
 
-    private void validate(int roundCount) {
-        if (roundCount < MIN_VALUE_BY_CAR) {
-            throw new TryOutOfRangeException();
-        }
+    public int getTryCount() {
+        return tryCount.value();
     }
 
     @Override

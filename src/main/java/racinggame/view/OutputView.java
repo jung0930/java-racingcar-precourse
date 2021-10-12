@@ -21,7 +21,13 @@ public class OutputView {
         System.out.println("실행결과");
     }
 
-    public static void printRace(Round round) {
+    public static void printRaces(RacingGame racingGame) {
+        for (int i = 0; i < racingGame.getTryCount(); i++) {
+            OutputView.printRace(racingGame.getRace(i));
+        }
+    }
+
+    private static void printRace(Round round) {
         List<Car> cars = round.cars().value();
         for (Car car : cars) {
             System.out.println(car.name() + " : " + printDistance(car.distance()));
