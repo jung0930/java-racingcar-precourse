@@ -21,6 +21,7 @@ public class RacingCarController {
     public void start() {
         Cars cars = Cars.from(InputView.inputCarNames());
         TryCount tryCount = TryCount.from(Integer.parseInt(InputView.inputTryCount()));
+
         RacingGame racingGame = RacingGame.of(cars, tryCount, new RacingMovableStrategy());
         OutputView.printExecutionResultText();
         OutputView.printRaces(racingGame);

@@ -2,7 +2,7 @@ package racinggame.view;
 
 import nextstep.utils.Console;
 
-public class InputView {
+public final class InputView {
 
     private InputView() {
     }

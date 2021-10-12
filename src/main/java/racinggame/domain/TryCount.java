@@ -2,22 +2,22 @@ package racinggame.domain;
 
 import racinggame.domain.exception.TryCountOutOfRangeException;
 
-public class TryCount {
+public final class TryCount {
 
     private static final int MIN_VALUE_BY_TRY_COUNT = 1;
 
     private final int tryCount;
 
-    private TryCount(int tryCount) {
+    private TryCount(final int tryCount) {
         validate(tryCount);
         this.tryCount = tryCount;
     }
 
-    public static TryCount from(int tryCount) {
+    public static TryCount from(final int tryCount) {
         return new TryCount(tryCount);
     }
 
-    public boolean isSame(int tryCount) {
+    public boolean isSame(final int tryCount) {
         return this.tryCount == tryCount;
     }
 
@@ -25,7 +25,7 @@ public class TryCount {
         return tryCount;
     }
 
-    private void validate(int tryCount) {
+    private void validate(final int tryCount) {
         if (tryCount < MIN_VALUE_BY_TRY_COUNT) {
             throw new TryCountOutOfRangeException();
         }

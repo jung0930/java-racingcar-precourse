@@ -7,31 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Cars {
+public final class Cars {
 
     private static final String COMMA = ",";
     private static final int MIN_VALUE_BY_CAR = 1;
 
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
-    private Cars(String carNames) {
+    private Cars(final String carNames) {
         validate(carNames);
         this.cars = convertCarNames(carNames);
     }
 
-    public static Cars from(String carNames) {
+    public static Cars from(final String carNames) {
         return new Cars(carNames);
     }
 
-    public static Cars from(List<Car> cars) {
+    public static Cars from(final List<Car> cars) {
         return new Cars(cars);
     }
 
-    private List<Car> convertCarNames(String carNames) {
+    private List<Car> convertCarNames(final String carNames) {
         List<Car> cars = new ArrayList<>();
         String[] names = carNames.split(COMMA);
         for (String name : names) {
@@ -40,7 +40,7 @@ public class Cars {
         return cars;
     }
 
-    public Cars move(MovableStrategy strategy) {
+    public Cars move(final MovableStrategy strategy) {
         List<Car> movedCars = new ArrayList<>();
         for (Car car : cars) {
             movedCars.add(car.move(strategy));
@@ -65,7 +65,7 @@ public class Cars {
         return fastestCar;
     }
 
-    private void addWinningCar(List<Car> winners, Car fastestCar, Car comparisonCar) {
+    private void addWinningCar(final List<Car> winners, final Car fastestCar, final Car comparisonCar) {
         if (fastestCar.compareDistance(comparisonCar) == 0) {
             winners.add(comparisonCar);
         }
@@ -75,7 +75,7 @@ public class Cars {
         return cars;
     }
 
-    private void validate(String carNames) {
+    private void validate(final String carNames) {
         if (carNames.split(COMMA).length < MIN_VALUE_BY_CAR) {
             throw new WithOutCarException();
         }

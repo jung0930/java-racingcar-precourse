@@ -3,14 +3,14 @@ package racinggame.domain;
 import java.util.Comparator;
 import java.util.Objects;
 
-public class Distance implements Comparator<Distance> {
+public final class Distance implements Comparator<Distance> {
 
     private static final int ADD = 1;
     private static final int INIT = 0;
 
     private final int distance;
 
-    private Distance(int distance) {
+    private Distance(final int distance) {
         this.distance = distance;
     }
 
@@ -18,7 +18,7 @@ public class Distance implements Comparator<Distance> {
         return new Distance(INIT);
     }
 
-    public static Distance from(int distance) {
+    public static Distance from(final int distance) {
         return new Distance(distance);
     }
 

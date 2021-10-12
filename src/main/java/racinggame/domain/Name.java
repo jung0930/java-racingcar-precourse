@@ -6,19 +6,19 @@ import racinggame.util.StringUtil;
 
 import java.util.Objects;
 
-public class Name {
+public final class Name {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 5;
 
     private final String name;
 
-    private Name(String name) {
+    private Name(final String name) {
         validate(name);
         this.name = name;
     }
 
-    public static Name from(String name) {
+    public static Name from(final String name) {
         return new Name(name);
     }
 
@@ -26,7 +26,7 @@ public class Name {
         return name;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         if (StringUtil.isEmptyOrNull(name)) {
             throw new NameEmptyOrNullException();
         }
