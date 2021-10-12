@@ -1,6 +1,5 @@
 package racinggame.domain;
 
-import racinggame.domain.exception.WithOutCarException;
 import racinggame.domain.strategy.MovableStrategy;
 
 import java.util.ArrayList;
@@ -9,33 +8,28 @@ import java.util.Objects;
 
 public final class Cars {
 
-    private static final String COMMA = ",";
-    private static final int MIN_VALUE_BY_CAR = 1;
-
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
-    private Cars(final String carNames) {
-        validate(carNames);
-        this.cars = convertCarNames(carNames);
+    private Cars(final Names names) {
+        this.cars = convertCarNames(names);
     }
 
-    public static Cars from(final String carNames) {
-        return new Cars(carNames);
+    public static Cars from(final Names names) {
+        return new Cars(names);
     }
 
     public static Cars from(final List<Car> cars) {
         return new Cars(cars);
     }
 
-    private List<Car> convertCarNames(final String carNames) {
+    private List<Car> convertCarNames(final Names names) {
         List<Car> cars = new ArrayList<>();
-        String[] names = carNames.split(COMMA);
-        for (String name : names) {
-            cars.add(Car.from(Name.from(name)));
+        for (Name name : names.value()) {
+            cars.add(Car.from(name));
         }
         return cars;
     }
@@ -73,12 +67,6 @@ public final class Cars {
 
     public List<Car> value() {
         return cars;
-    }
-
-    private void validate(final String carNames) {
-        if (carNames.split(COMMA).length < MIN_VALUE_BY_CAR) {
-            throw new WithOutCarException();
-        }
     }
 
     @Override
