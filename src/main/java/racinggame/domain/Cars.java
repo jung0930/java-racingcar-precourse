@@ -20,7 +20,7 @@ public class Cars {
 
     private Cars(String carNames) {
         validate(carNames);
-        this.cars = addCars(carNames);
+        this.cars = convertCarNames(carNames);
     }
 
     public static Cars from(String carNames) {
@@ -31,7 +31,7 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private List<Car> addCars(String carNames) {
+    private List<Car> convertCarNames(String carNames) {
         List<Car> cars = new ArrayList<>();
         String[] names = carNames.split(COMMA);
         for (String name : names) {
