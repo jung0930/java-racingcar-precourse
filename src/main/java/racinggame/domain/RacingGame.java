@@ -27,7 +27,7 @@ public final class RacingGame {
     private List<Round> startRounds() {
         List<Round> rounds = new ArrayList<>();
         Round round = Round.of(cars, strategy);
-        for (int i = 0; !tryCount.isSame(i); i++) {
+        for (int i = 0; tryCount.smallerThan(i); i++) {
             round = round.start();
             rounds.add(round);
         }

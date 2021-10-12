@@ -45,12 +45,7 @@ public final class Distance implements Comparator<Distance> {
 
     @Override
     public int compare(Distance distance1, Distance distance2) {
-        if (distance1.distance > distance2.distance) {
-            return 1;
-        } else if (distance1.distance == distance2.distance) {
-            return 0;
-        }
-        return -1;
+        return Integer.compare(distance1.distance, distance2.distance);
     }
 
 }

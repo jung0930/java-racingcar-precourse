@@ -21,6 +21,10 @@ public final class TryCount {
         return this.tryCount == tryCount;
     }
 
+    public boolean smallerThan(final int tryCount) {
+        return tryCount < this.tryCount;
+    }
+
     public int value() {
         return tryCount;
     }
