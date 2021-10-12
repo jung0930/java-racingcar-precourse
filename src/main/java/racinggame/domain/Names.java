@@ -12,26 +12,27 @@ public final class Names {
 
     private final List<Name> names;
 
-    private Names(final String carNames) {
-        validate(carNames);
-        this.names = convertCarNames(carNames);
+    private Names(final String names) {
+        validate(names);
+        this.names = convertCarNames(names);
     }
 
-    public static Names from(final String carNames) {
-        return new Names(carNames);
+    public static Names from(final String names) {
+        return new Names(names);
     }
 
-    private void validate(final String carNames) {
-        if (names.size() < MIN_SIZE) {
+    private void validate(final String names) {
+        String[] splitedNames = names.split(COMMA);
+        if (splitedNames.length < MIN_SIZE) {
             throw new NamesNotDualException();
         }
-        validateDuplicate(carNames);
+        validateDuplicate(splitedNames);
     }
 
-    private void validateDuplicate(final String carNames) {
-        List<String> names = Arrays.asList(carNames.split(COMMA));
-        Set<String> namesSet = new HashSet<>(names);
-        if (names.size() != namesSet.size()) {
+    private void validateDuplicate(final String[] splitedNames) {
+        List<String> namesList = Arrays.asList(splitedNames);
+        Set<String> namesSet = new HashSet<>(namesList);
+        if (namesList.size() != namesSet.size()) {
             throw new NamesDuplicateException();
         }
     }
