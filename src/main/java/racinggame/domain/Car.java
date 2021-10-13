@@ -34,6 +34,17 @@ public final class Car {
         return this;
     }
 
+    public Car findFasterCar(final Car comparisonCar) {
+        if (compareDistance(comparisonCar) < 1) {
+            return comparisonCar;
+        }
+        return this;
+    }
+
+    public int compareDistance(final Car comparisonCar) {
+        return distance.compare(comparisonCar.distance);
+    }
+
     public String name() {
         return name.value();
     }
