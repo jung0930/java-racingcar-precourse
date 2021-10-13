@@ -27,4 +27,12 @@ class RoundTest {
         assertThat(Round.of(cars, strategy)).isInstanceOf(Round.class);
     }
 
+    @DisplayName("Race를 시작한다. cars가 이동했는지 확인한다.")
+    @Test
+    void start() {
+        Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1))));
+
+        assertThat(Round.of(cars, strategy).start().cars()).isEqualTo(movedCars);
+    }
+
 }
