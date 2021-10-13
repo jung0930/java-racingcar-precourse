@@ -27,4 +27,13 @@ class CarTest {
         assertThat(car.move(new ForwardMovableStrategy()).distance()).isEqualTo(movedCar.distance());
     }
 
+    @DisplayName("더 빠른 Car을 찾는다.")
+    @Test
+    void findFasterCar() {
+        Car carA = Car.of(Name.from("A"), Distance.from(5));
+        Car carB = Car.of(Name.from("B"), Distance.from(1));
+
+        assertThat(carA.findFasterCar(carB)).isEqualTo(carA);
+    }
+
 }
