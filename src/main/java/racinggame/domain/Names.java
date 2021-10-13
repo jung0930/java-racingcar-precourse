@@ -1,11 +1,9 @@
 package racinggame.domain;
 
 import racinggame.domain.exception.NamesDuplicateException;
+import racinggame.domain.exception.NamesNotDualException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public final class Names {
 
@@ -22,6 +20,9 @@ public final class Names {
 
     private void validate(final String names) {
         String[] splitedNames = names.split(COMMA);
+        if (splitedNames.length < MIN_SIZE) {
+            throw new NamesNotDualException();
+        }
         validateDuplicate(splitedNames);
     }
 
