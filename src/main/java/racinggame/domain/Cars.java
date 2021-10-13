@@ -42,6 +42,29 @@ public final class Cars {
         return new Cars(movedCars);
     }
 
+    public Cars findFastestCars() {
+        List<Car> winners = new ArrayList<>();
+        Car fastestCar = findFastestCar();
+        for (Car car : cars) {
+            addWinningCar(winners, fastestCar, car);
+        }
+        return new Cars(winners);
+    }
+
+    private Car findFastestCar() {
+        Car fastestCar = cars.get(0);
+        for (Car car : cars) {
+            fastestCar = car.findFasterCar(fastestCar);
+        }
+        return fastestCar;
+    }
+
+    private void addWinningCar(final List<Car> winners, final Car fastestCar, final Car comparisonCar) {
+        if (fastestCar.compareDistance(comparisonCar) == 0) {
+            winners.add(comparisonCar);
+        }
+    }
+
     public List<Car> value() {
         return cars;
     }
