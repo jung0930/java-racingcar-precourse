@@ -1,11 +1,15 @@
 package racinggame.domain;
 
 import racinggame.domain.exception.NameEmptyOrNullException;
+import racinggame.domain.exception.NameLengthOutOfRangeException;
 import racinggame.util.StringUtil;
 
 import java.util.Objects;
 
 public final class Name {
+
+    private static final int MIN_LENGTH = 1;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
 
@@ -25,6 +29,9 @@ public final class Name {
     private void validate(final String name) {
         if (StringUtil.isEmptyOrNull(name)) {
             throw new NameEmptyOrNullException();
+        }
+        if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+            throw new NameLengthOutOfRangeException();
         }
     }
 
