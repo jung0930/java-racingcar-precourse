@@ -14,7 +14,16 @@ class CarsTest {
     @Test
     void create() {
         assertThat(Cars.from(Names.from("a,b,c,d,e"))).isInstanceOf(Cars.class);
-        // assertThat(Cars.from(Arrays.asList(Car.from(Name.from("a")), Car.from(Name.from("b"))))).isInstanceOf(Cars.class);
+        assertThat(Cars.from(Arrays.asList(Car.from(Name.from("a")), Car.from(Name.from("b"))))).isInstanceOf(Cars.class);
+    }
+
+    @DisplayName("Cars를 이동시킨다.")
+    @Test
+    void move() {
+        Cars cars = Cars.from(Arrays.asList(Car.from(Name.from("a")), Car.of(Name.from("b"), Distance.from(1))));
+        Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1)), Car.of(Name.from("b"), Distance.from(2))));
+
+        assertThat(cars.move(new ForwardMovableStrategy())).isEqualTo(movedCars);
     }
 
 }
