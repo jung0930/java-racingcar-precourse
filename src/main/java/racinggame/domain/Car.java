@@ -1,5 +1,7 @@
 package racinggame.domain;
 
+import racinggame.domain.strategy.MovableStrategy;
+
 import java.util.Objects;
 
 public final class Car {
@@ -23,6 +25,13 @@ public final class Car {
 
     public static Car of(final Name name, final Distance distance) {
         return new Car(name, distance);
+    }
+
+    public Car move(final MovableStrategy strategy) {
+        if (strategy.isMoveable()) {
+            return new Car(name, distance.increase());
+        }
+        return this;
     }
 
     public String name() {
