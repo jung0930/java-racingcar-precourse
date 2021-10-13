@@ -26,6 +26,10 @@ public final class Distance {
         return new Distance(distance + ADD);
     }
 
+    public int compare(Distance distance) {
+        return Integer.compare(this.distance, distance.distance);
+    }
+
     public int value() {
         return distance;
     }
