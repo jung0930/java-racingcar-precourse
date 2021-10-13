@@ -16,6 +16,10 @@ public final class Round {
         return new Round(cars, strategy);
     }
 
+    public Round start() {
+        return new Round(cars.move(strategy), strategy);
+    }
+
     public Cars cars() {
         return cars;
     }
