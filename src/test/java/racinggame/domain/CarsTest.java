@@ -26,4 +26,13 @@ class CarsTest {
         assertThat(cars.move(new ForwardMovableStrategy())).isEqualTo(movedCars);
     }
 
+    @DisplayName("가장 빠른 Cars를 찾는다.")
+    @Test
+    void findFastestCars() {
+        Cars cars = Cars.from(Arrays.asList(Car.from(Name.from("a")), Car.of(Name.from("b"), Distance.from(2)), Car.of(Name.from("c"), Distance.from(2))));
+        Cars fastestCars = Cars.from(Arrays.asList(Car.of(Name.from("b"), Distance.from(2)), Car.of(Name.from("c"), Distance.from(2))));
+
+        assertThat(cars.findFastestCars()).isEqualTo(fastestCars);
+    }
+
 }
