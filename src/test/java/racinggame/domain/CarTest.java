@@ -18,4 +18,13 @@ class CarTest {
         );
     }
 
+    @DisplayName("Car를 이동시킨다.")
+    @Test
+    void move() {
+        Car car = Car.of(Name.from("abcde"), Distance.from(5));
+        Car movedCar = Car.of(Name.from("abcde"), Distance.from(6));
+
+        assertThat(car.move(new ForwardMovableStrategy()).distance()).isEqualTo(movedCar.distance());
+    }
+
 }
