@@ -24,4 +24,10 @@ class NameTest {
         assertThatIllegalArgumentException().isThrownBy(() -> Name.from(input));
     }
 
+    @DisplayName("5글자를 초과하면 exception 발생")
+    @Test
+    void validate_5글자_초과() {
+        assertThatIllegalArgumentException().isThrownBy(() -> Name.from("abcdef"));
+    }
+
 }
