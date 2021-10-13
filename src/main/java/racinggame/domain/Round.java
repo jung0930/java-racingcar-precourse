@@ -20,6 +20,10 @@ public final class Round {
         return new Round(cars.move(strategy), strategy);
     }
 
+    public Cars findFastestCars() {
+        return cars.findFastestCars();
+    }
+
     public Cars cars() {
         return cars;
     }

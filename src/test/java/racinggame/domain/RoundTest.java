@@ -9,7 +9,6 @@ import racinggame.domain.strategy.MovableStrategy;
 import java.util.Arrays;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RoundTest {
 
@@ -33,6 +32,13 @@ class RoundTest {
         Cars movedCars = Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(1))));
 
         assertThat(Round.of(cars, strategy).start().cars()).isEqualTo(movedCars);
+    }
+
+    @DisplayName("가장 빠른 Cars를 찾는다.")
+    @Test
+    void findFastestCars() {
+        assertThat(Round.of(cars, strategy).findFastestCars())
+                .isEqualTo(Cars.from(Arrays.asList(Car.from(Name.from("a")))));
     }
 
 }
