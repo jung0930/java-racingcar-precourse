@@ -23,4 +23,12 @@ class NamesTest {
         });
     }
 
+    @DisplayName("이름이 중복되면 에러")
+    @Test
+    void validate_이름이_중복() {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Names.from("a,b,c,d,a");
+        });
+    }
+
 }
