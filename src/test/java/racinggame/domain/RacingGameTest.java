@@ -16,4 +16,12 @@ class RacingGameTest {
         assertThat(RacingGame.of(Cars.from(Names.from("a,b,c,d,e")), TryCount.from(3), new ForwardMovableStrategy())).isInstanceOf(RacingGame.class);
     }
 
+    @DisplayName("우승한 Cars를 찾는다.")
+    @Test
+    void findWinningCars() {
+        RacingGame racingGame = RacingGame.of(Cars.from(Names.from("a,b")), TryCount.from(3), new ForwardMovableStrategy());
+
+        assertThat(racingGame.findWinningCars()).isEqualTo(Cars.from(Arrays.asList(Car.of(Name.from("a"), Distance.from(3)), Car.of(Name.from("b"), Distance.from(3)))));
+    }
+
 }
