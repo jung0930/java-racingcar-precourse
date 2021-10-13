@@ -34,6 +34,14 @@ public final class RacingGame {
         return rounds;
     }
 
+    public Cars findWinningCars() {
+        return findLastRound().findFastestCars();
+    }
+
+    private Round findLastRound() {
+        return rounds.get(rounds.size() - 1);
+    }
+
     public Round getRace(final int index) {
         return rounds.get(index);
     }
