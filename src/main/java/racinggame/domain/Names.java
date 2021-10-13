@@ -10,8 +10,11 @@ public final class Names {
     private static final String COMMA = ",";
     private static final int MIN_SIZE = 2;
 
+    private final List<Name> names;
+
     private Names(final String names) {
         validate(names);
+        this.names = convertCarNames(names);
     }
 
     public static Names from(final String names) {
@@ -32,6 +35,18 @@ public final class Names {
         if (namesList.size() != namesSet.size()) {
             throw new NamesDuplicateException();
         }
+    }
+
+    private List<Name> convertCarNames(final String carNames) {
+        List<Name> names = new ArrayList<>();
+        for (String name : carNames.split(COMMA)) {
+            names.add(Name.from(name));
+        }
+        return names;
+    }
+
+    public List<Name> value() {
+        return names;
     }
 
 }
